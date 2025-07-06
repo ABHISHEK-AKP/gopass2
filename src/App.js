@@ -103,7 +103,7 @@ function App() {
               </span>
             </motion.div>
           </div>
-          <div className="text-[14px] min-w-full  mb-2">
+          <div className="text-[14px] min-w-full  mb-0">
             Main St. S. @ Elgin Dr. to University of Guelph - Weekend Pass
           </div>
         </div>
@@ -120,7 +120,7 @@ function App() {
             zIndex: 20,
           }}
         ></div>
-        <div className="w-full p-4 flex justify-around text-center border-b-[3px] border-dotted border-gray-400 bg-white relative z-10">
+        <div className="w-full p-4 pb-0 flex justify-around text-center border-b-[3px] border-dotted border-gray-400 bg-white relative z-10">
           <div className="mx-2 flex flex-col items-center justify-center">
             <div className="text-5xl font-bold">x1</div>
             <div className="text-xl font-bold">Passenger(s)</div>
@@ -288,7 +288,7 @@ function App() {
         </div>
         <div className="bg-[#7e7739] py-1 border-none w-full"></div>
         <div className=" text-white text-center p-4">
-          <div className="text-[18px] mb-2 mx-4 mt-8">
+          <div className="text-[18px] mb-2 mx-4 mt-2">
             Please show proof of your ticket to the Customer Protective Officers
             when asked
           </div>
