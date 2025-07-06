@@ -103,7 +103,7 @@ function App() {
               </span>
             </motion.div>
           </div>
-          <div className="text-[14px] min-w-full  mb-4">
+          <div className="text-[14px] min-w-full  mb-2">
             Main St. S. @ Elgin Dr. to University of Guelph - Weekend Pass
           </div>
         </div>
