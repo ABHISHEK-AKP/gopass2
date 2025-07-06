@@ -4,16 +4,33 @@ import "./App.css";
 
 function App() {
   const [currentTime, setCurrentTime] = useState(new Date());
-  const activationTime = new Date(
-    currentTime.getTime() - (12 * 60 * 60 + 18 * 60 + 19) * 1000
-  ); // 12:18:19 ago
-  const [timeLeft, setTimeLeft] = useState(8 * 60 * 60); // 8 hours countdown (in seconds)
+  const [timeLeft, setTimeLeft] = useState(() => {
+    const now = new Date();
+    const staticTime = new Date("2025-07-06T00:00:00");
+    const activationTime = new Date(staticTime - (2 * 60 * 60 + 18 * 60 + 19) * 1000);
+    const secondsElapsed = Math.floor((now-staticTime) / 1000);
+    const totalCountdown = 24 * 60 * 60; // 8 hours
+    return Math.max(0, totalCountdown - secondsElapsed);
+  });
+  const staticTime = new Date("2025-07-06T00:00:00");
+const timeActivatedInSeconds = Math.floor((currentTime - staticTime) / 1000);
+  // const [timeActivated, setTimeActivated] = useState(() => {
+  //   const now = new Date();
+  //   const staticTime = new Date("2025-07-06T00:00:00");
+  //   const activationTime = Math.floor((now-staticTime) / 1000);
+  //   return activationTime;
+  // });
+  // const activationTime = new Date(
+  //   staticTime - (12 * 60 * 60 + 18 * 60 + 19) * 1000
+  // ); // 12:18:19 ago // 12:18:19 ago
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentTime(new Date());
       setTimeLeft((prev) => (prev > 0 ? prev - 1 : 0));
     }, 1000);
+    // setTimeActivated((prev) => (prev > 0 ? prev + 1 : 0)); // ✅ now runs every second
+  
     return () => clearInterval(interval);
   }, []);
 
@@ -35,14 +52,14 @@ function App() {
       hour12: true,
     });
   };
-
-  const timeSinceActivation = new Date(currentTime - activationTime);
-  const sinceActivation = `${String(timeSinceActivation.getUTCHours()).padStart(
-    2,
-    "0"
-  )}:${String(timeSinceActivation.getUTCMinutes()).padStart(2, "0")}:${String(
-    timeSinceActivation.getUTCSeconds()
-  ).padStart(2, "0")}`;
+  const formateActivationTime = (seconds) => {
+    const hrs = String(Math.floor(seconds / 3600)).padStart(2, "0");
+    const mins = String(Math.floor((seconds % 3600) / 60)).padStart(2, "0");
+    const secs = String(seconds % 60).padStart(2, "0");
+    return `${hrs}:${mins}:${secs}`;
+  };
+  
+  
 
   return (
     <div className=" min-h-screen bg-[#7e7739] flex flex-col items-center justify-center text-white font-sans border-none">
@@ -282,7 +299,7 @@ function App() {
               <div className="font-bold text-[11px]">
                 TIME SINCE ACTIVATION:
               </div>
-              <div className="font-bold text-[15px]">{sinceActivation}</div>
+              <div className="font-bold text-[15px]">{formateActivationTime(timeActivatedInSeconds)}</div>
             </div>
           </div>
         </div>
