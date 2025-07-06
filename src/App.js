@@ -116,7 +116,7 @@ function App() {
             borderRadius: "50%",
             border: "2px solid white",
             backgroundColor: "#7e7739", // background same as parent or transparent
-            top: "calc(25% + 20px)", // position relative to upper div bottom (adjust as needed)
+            top: "calc(25% + 22px)", // position relative to upper div bottom (adjust as needed)
             zIndex: 20,
           }}
         ></div>
